@@ -13,7 +13,7 @@ const GeneratePage: NextPage = () => {
 
   const generateIcon = api.generate.generateIcon.useMutation({
     onSuccess: (data) => {
-      console.log("mutation finished", data)
+      console.log(data.message)
     }
   })
 
@@ -42,7 +42,7 @@ const GeneratePage: NextPage = () => {
 
           <TextField
             label="Prompt"
-            variant="standard"
+            // variant="standard"
             value={form.prompt}
             onChange={updateForm("prompt")}
             helperText="Enter a prompt to generate an icon"

@@ -21,7 +21,4 @@ export const generateRouter = createTRPCRouter({
         message: "success",
       }
     })
-    // .query(async ({ input }) => {
-    //   const { prompt } = input;
-    // })
 })
