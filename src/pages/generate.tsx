@@ -1,4 +1,4 @@
-import { Button, FormControl, FormControlLabel, Stack, TextField } from "@mui/material";
+import { Box, Button, FormControl, FormControlLabel, FormHelperText, Input, InputLabel, Stack, TextField } from "@mui/material";
 import { type NextPage } from "next";
 import { useState } from "react";
 import { PageContainer } from "~/components/mui/PageContainer";
@@ -7,13 +7,25 @@ import { api } from "~/utils/api";
 
 
 const GeneratePage: NextPage = () => {
-
-
   const [form, setForm] = useState({
     prompt: "",
   })
 
+  const generateIcon = api.generate.generateIcon.useMutation({
+    onSuccess: (data) => {
+      console.log("mutation finished", data)
+    }
+  })
 
+  function handleFormSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    generateIcon.mutate(form)
+    // generateIcon.mutate({
+    //   prompt: form.prompt
+    // })
+  }
+  
   
   function updateForm(key: string) {  // NOTE:  "factory function" (returns a function)
     return (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,27 +34,24 @@ const GeneratePage: NextPage = () => {
   }
 
 
-  async function handleFormSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    // TODO: submit the form data to the backend
-  }
-  
-  
+
   return (
     <>
       <PageContainer>
-        <FormControl
-          onSubmit={handleFormSubmit}
-        >
+        <Stack component="form" onSubmit={handleFormSubmit}>
+
           <TextField
             label="Prompt"
+            variant="standard"
             value={form.prompt}
             onChange={updateForm("prompt")}
+            helperText="Enter a prompt to generate an icon"
           />
-          <Button variant="contained" color="primary" sx={{ mt: 2 }}>
+
+          <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
             Submit
           </Button>
-        </FormControl>
+        </Stack>
       </PageContainer>
     </>
   );
