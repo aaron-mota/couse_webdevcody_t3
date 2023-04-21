@@ -60,7 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function SiteTopNav() {
   // SignOutDialog
   const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
   const handleSignOut = () => {

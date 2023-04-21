@@ -12,7 +12,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import AppBarSite from "~/components/mui/layout/AppBarSite";
+import SiteTopNav from "~/components/mui/layout/SiteTopNav";
 
 
 const MyApp: AppType<{ session: Session | null }> = ({
@@ -31,7 +31,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <AppBarSite />
+        <SiteTopNav />
         <Component {...pageProps} />
 
       {/* </ThemeProvider> */}
