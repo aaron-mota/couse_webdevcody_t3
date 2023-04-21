@@ -1,12 +1,19 @@
-import { Box, Button, FormControl, FormControlLabel, FormHelperText, Input, InputLabel, Stack, TextField } from "@mui/material";
+import { Stack } from "@mui/material";
 import { type NextPage } from "next";
+import { signIn,  useSession } from "next-auth/react";
 import { useState } from "react";
+import { ButtonStyled } from "~/components/mui/ButtonStyled";
+import { TextFieldStyled } from "~/components/mui/TextFieldStyled.";
 import { PageContainer } from "~/components/mui/PageContainer";
 import { api } from "~/utils/api";
+import { UserCard } from "~/components/mui/UserCard";
 
 
 
 const GeneratePage: NextPage = () => {
+  const session = useSession()
+  const isLoggedIn = !!session.data
+
   const [form, setForm] = useState({
     prompt: "",
   })
@@ -21,9 +28,6 @@ const GeneratePage: NextPage = () => {
     e.preventDefault();
 
     generateIcon.mutate(form)
-    // generateIcon.mutate({
-    //   prompt: form.prompt
-    // })
   }
   
   
@@ -35,27 +39,40 @@ const GeneratePage: NextPage = () => {
 
 
 
+
+
   return (
     <>
       <PageContainer>
         <Stack component="form" onSubmit={handleFormSubmit}>
 
-          <TextField
+          <TextFieldStyled
             label="Prompt"
-            // variant="standard"
             value={form.prompt}
             onChange={updateForm("prompt")}
             helperText="Enter a prompt to generate an icon"
           />
 
-          <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+          <ButtonStyled type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
             Submit
-          </Button>
+          </ButtonStyled>
+
+          {!isLoggedIn ?
+            <ButtonStyled onClick={() => signIn().catch(console.error)}>
+              Sign in
+            </ButtonStyled>
+          :
+            <UserCard />
+          }
+
         </Stack>
       </PageContainer>
+
+
     </>
   );
 };
 
 export default GeneratePage;
+
 
