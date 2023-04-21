@@ -76,7 +76,7 @@ const GeneratePage: NextPage = () => {
           {imageUrl && 
             <>
               {/* <Image src={imageUrl} alt="Generated Icon" width={400} height={400} /> */}
-              <Box component="img" src={imageUrl.slice(0,4) === "http" ? imageUrl : `data:image/gif;base64, ${imageUrl}`} alt="Generated Icon" width={400} height={400} mt={4} />
+              <Box component="img" src={imageUrl.slice(0,4) === "http" ? imageUrl : `data:image/png;base64, ${imageUrl}`} alt="Generated Icon" width={400} height={400} mt={4} />
             </>
           }
 

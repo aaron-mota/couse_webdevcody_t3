@@ -71,7 +71,7 @@ export const generateRouter = createTRPCRouter({
 
 // FUNCTIONS
 async function generateIcon(prompt: string): Promise<string | undefined> {
-  if (env.MOCK_OPENAI == "false") {
+  if (env.MOCK_OPENAI == "true") {
     return "https://picsum.photos/400/400"
   } else {
     const response = await openai.createImage({
