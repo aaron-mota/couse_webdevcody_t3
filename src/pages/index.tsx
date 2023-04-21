@@ -1,79 +1,109 @@
+import { Box, CircularProgress, Skeleton, Stack } from "@mui/material";
 import { type NextPage } from "next";
-import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn,  useSession } from "next-auth/react";
+import { useState } from "react";
+import { ButtonStyled } from "~/components/mui/ButtonStyled";
+import { TextFieldStyled } from "~/components/mui/TextFieldStyled.";
 import { PageContainer } from "~/components/mui/PageContainer";
-
 import { api } from "~/utils/api";
+import { UserCard } from "~/components/mui/UserCard";
+import Image from "next/image";
+import { useBuyCredits } from "~/hooks/useBuyCredits";
+
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  // GENERAL
+  const session = useSession()
+  const isLoggedIn = !!session.data
 
+  // HOOKS
+  const { buyCredits } = useBuyCredits()
   
+
+  // STATE
+  const [form, setForm] = useState({prompt: "",})
+  // const [imageUrl, setImageUrl] = useState("")
+  const [imageUrl, setImageUrl] = useState("")
+
+  const [isRequesting, setIsRequesting] = useState(false)
+
+
+  // DB REQUESTS
+  const generateIcon = api.generate.generateIcon.useMutation({
+    onSuccess: (data) => {
+      if (data.imageUrl) {
+        setImageUrl(data.imageUrl)
+      }
+    },
+    onSettled: () => {
+      setIsRequesting(false)
+    }
+  })
+
+
+  // FUNCTIONS
+  function handleFormSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setIsRequesting(true)
+    generateIcon.mutate(form)
+  }
+  
+  function updateForm(key: string) {  // NOTE:  "factory function" (returns a function)
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      setForm((prev) => ({ ...prev, [key]: e.target.value }));
+    };
+  }
+
+
+
   return (
     <>
       <PageContainer>
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-          </h1>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-              href="https://create.t3.gg/en/usage/first-steps"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">First Steps →</h3>
-              <div className="text-lg">
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
-              </div>
-            </Link>
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
-              </div>
-            </Link>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              {hello.data ? hello.data.greeting : "Loading tRPC query..."}
-            </p>
-            <AuthShowcase />
-          </div>
-        </div>
+        <Stack component="form" onSubmit={handleFormSubmit}>
+
+          <TextFieldStyled
+            label="Prompt"
+            value={form.prompt}
+            onChange={updateForm("prompt")}
+            helperText="Enter a prompt to generate an icon"
+          />
+
+          <ButtonStyled type="submit" variant="contained" color="primary" sx={{ mt: 2 }} disabled={isRequesting}>
+            Generate icon
+          </ButtonStyled>
+
+          {!isLoggedIn ?
+            <ButtonStyled onClick={() => signIn().catch(console.error)}>
+              Sign in
+            </ButtonStyled>
+          :
+            <>
+              <UserCard sx={{mt: 2}} />
+              <ButtonStyled onClick={() => buyCredits().catch(console.error)}>Buy Credits</ButtonStyled>
+            </>
+
+          }
+
+          <Stack justifyContent="center" alignItems="center" sx={{height: 400}}>
+            {isRequesting ?
+                <CircularProgress />
+            : imageUrl &&
+              <>
+                {/* <Image src={imageUrl} alt="Generated Icon" width={400} height={400} /> */}
+                <Box component="img" src={imageUrl} alt="Generated Icon" width={400} height={400} mt={4} />
+              </>
+            }
+          </Stack>
+
+
+        </Stack>
       </PageContainer>
+
+
     </>
   );
 };
 
 export default Home;
 
-const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession();
 
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined },
-  );
-
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl text-white">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
-    </div>
-  );
-};
