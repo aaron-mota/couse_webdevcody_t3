@@ -34,6 +34,7 @@ export const UserCard = ({ appBar, menuItem, cardHeaderProps, ...cardProps }: Us
   };
   
 
+  // notCurrentlyUsed
   if (appBar) {
     return (
       <>
@@ -78,11 +79,6 @@ export const UserCard = ({ appBar, menuItem, cardHeaderProps, ...cardProps }: Us
         >
           <CardHeader
             avatar={<UserBadgeIndicator />}
-            action={
-              <IconButton aria-label="settings" sx={{mt: 0.8}}>
-                <MoreVert />
-              </IconButton>
-            }
             title={session.data?.user.name}
             subheader={session.data?.user.email}
             titleTypographyProps={titleTypographyProps}
