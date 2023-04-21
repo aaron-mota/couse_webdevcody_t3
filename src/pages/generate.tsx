@@ -28,7 +28,6 @@ const GeneratePage: NextPage = () => {
   // DB REQUESTS
   const generateIcon = api.generate.generateIcon.useMutation({
     onSuccess: (data) => {
-      console.log(data.message)
       if (data.imageUrl) {
         setImageUrl(data.imageUrl)
       }
@@ -84,7 +83,7 @@ const GeneratePage: NextPage = () => {
             : imageUrl &&
               <>
                 {/* <Image src={imageUrl} alt="Generated Icon" width={400} height={400} /> */}
-                <Box component="img" src={imageUrl.slice(0,4) === "http" ? imageUrl : `data:image/png;base64, ${imageUrl}`} alt="Generated Icon" width={400} height={400} mt={4} />
+                <Box component="img" src={imageUrl} alt="Generated Icon" width={400} height={400} mt={4} />
               </>
             }
           </Stack>

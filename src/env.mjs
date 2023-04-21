@@ -26,6 +26,7 @@ const server = z.object({
   AWS_S3_ACCESS_KEY: z.string(),
   AWS_S3_SECRET_ACCESS_KEY: z.string(),
   AWS_S3_REGION: z.string(),
+  AWS_S3_BUCKET_NAME: z.string(),
 });
 
 /**
@@ -54,6 +55,7 @@ const processEnv = {
   AWS_S3_ACCESS_KEY: process.env.AWS_S3_ACCESS_KEY,
   AWS_S3_SECRET_ACCESS_KEY: process.env.AWS_S3_SECRET_ACCESS_KEY,
   AWS_S3_REGION: process.env.AWS_S3_REGION,
+  AWS_S3_BUCKET_NAME: process.env.AWS_S3_BUCKET_NAME,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 

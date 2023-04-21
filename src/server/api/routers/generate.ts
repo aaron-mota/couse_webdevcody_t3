@@ -85,9 +85,9 @@ export const generateRouter = createTRPCRouter({
         }
       }
 
+      const imageUrl = base64EncodedImage?.slice(0,4) === "http" ? base64EncodedImage : `https://${env.AWS_S3_BUCKET_NAME}.s3.${env.AWS_S3_REGION}.amazonaws.com/${icon.id}`
       return {
-        message: "success",
-        imageUrl: base64EncodedImage,
+        imageUrl,
       }
     })
 })
