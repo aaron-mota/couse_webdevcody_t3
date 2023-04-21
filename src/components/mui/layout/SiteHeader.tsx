@@ -19,6 +19,8 @@ import { env } from '~/env.mjs';
 import { UserBadgeIndicator } from '../UserBadgeIndicator';
 import { UserCard } from '../UserCard';
 import { SignOutDialog } from '../SignOutDialog';
+import Link from 'next/link';
+import { LinkWrapped } from '../LinkWrapped';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -200,9 +202,11 @@ export default function SiteHeader() {
               variant="h6"
               noWrap
               component="div"
-              sx={{ display: { xs: 'none', sm: 'block' } }}
+              sx={{ display: { xs: 'none', sm: 'block' }, cursor: "pointer"}}
             >
-              {env.NEXT_PUBLIC_APP_NAME}
+              <LinkWrapped href="/" sx={{color: "background.default"}}>
+                {env.NEXT_PUBLIC_APP_NAME}
+              </LinkWrapped>
             </Typography>
 
             {/* Search */}
@@ -283,3 +287,32 @@ export default function SiteHeader() {
     </>
   );
 }
+
+
+
+
+{/* <Box sx={{ flexGrow: 1 }}>
+  <AppBar
+    position="static"
+    sx={{
+      // backgroundColor: "#00000010",
+      backgroundColor: "background.paper",
+      boxShadow: "none",
+    }}
+  >
+    <Toolbar
+      variant="dense"
+      sx={{
+        minHeight: 44,
+        maxHeight: 44,
+      }}
+    >
+    </Toolbar>
+
+    <Tabs>
+      <Tab label="Item One" />
+      <Tab label="Item Two" />
+    </Tabs>
+  </AppBar>
+</Box> */}
+

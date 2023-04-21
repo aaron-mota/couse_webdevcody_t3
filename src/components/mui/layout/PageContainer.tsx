@@ -4,6 +4,7 @@ import React from 'react'
 import SiteHeader from './SiteHeader'
 import SiteTopNav from './SiteTopNav'
 import { env } from '~/env.mjs'
+import { SiteTopNavTabs } from './SiteTopNavTabs'
 
 type Props = {
   children: React.ReactNode,
@@ -29,6 +30,7 @@ const PageContainer = ({
 
       <SiteHeader />
       {/* <SiteTopNav /> */}
+      <SiteTopNavTabs />
 
       <Stack justifyContent="center" alignItems="center" sx={{width: 1, height: "100vh", ...sx}}>
         {children}
