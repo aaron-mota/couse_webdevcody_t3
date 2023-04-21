@@ -8,13 +8,16 @@ import { PageContainer } from "~/components/mui/PageContainer";
 import { api } from "~/utils/api";
 import { UserCard } from "~/components/mui/UserCard";
 import Image from "next/image";
-
+import { useBuyCredits } from "~/hooks/useBuyCredits";
 
 
 const GeneratePage: NextPage = () => {
   // GENERAL
   const session = useSession()
   const isLoggedIn = !!session.data
+
+  // HOOKS
+  const { buyCredits } = useBuyCredits()
   
 
   // STATE
@@ -74,7 +77,11 @@ const GeneratePage: NextPage = () => {
               Sign in
             </ButtonStyled>
           :
-            <UserCard sx={{mt: 2}} />
+            <>
+              <UserCard sx={{mt: 2}} />
+              <ButtonStyled onClick={() => buyCredits().catch(console.error)}>Buy Credits</ButtonStyled>
+            </>
+
           }
 
           <Stack justifyContent="center" alignItems="center" sx={{height: 400}}>
