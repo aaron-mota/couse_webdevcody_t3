@@ -1,7 +1,7 @@
 import { Button, Card, CardHeader, CardHeaderProps, CardProps, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TypographyProps } from '@mui/material'
 import React, { useState } from 'react'
 import { BadgeIndicator } from './BadgeIndicator'
-import { MoreVert } from '@mui/icons-material'
+import MoreVert from '@mui/icons-material/MoreVert'
 import { signOut, useSession } from 'next-auth/react'
 
 

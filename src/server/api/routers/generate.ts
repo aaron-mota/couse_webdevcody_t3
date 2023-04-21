@@ -7,6 +7,7 @@ import {
   protectedProcedure,
 } from "~/server/api/trpc";
 
+
 // DALL-E API (OpenAI)
 import { env } from "~/env.mjs";
 import { Configuration, OpenAIApi } from "openai";
@@ -22,6 +23,7 @@ const s3 = new AWS.S3({
   secretAccessKey: env.AWS_S3_SECRET_ACCESS_KEY,
   region: env.AWS_S3_REGION,
 })
+
 
 
 export const generateRouter = createTRPCRouter({
@@ -68,14 +70,15 @@ export const generateRouter = createTRPCRouter({
       // (3) if DALL-E image (vs mock), save image to file management service (AWS S3)
       if (!isMockImage(base64EncodedImage)) {
         try {
-          await s3.putObject({
-            Bucket: 'course-webdevcody-t3',
+          const putObject = {
+            Bucket: env.AWS_S3_BUCKET_NAME,
             Body: Buffer.from(base64EncodedImage!, 'base64'),
-            // Key: `my-image.png`,
             Key: icon.id,
             ContentEncoding: 'base64',
             ContentType: 'image/png',
-          })
+          }
+          // console.log(putObject)
+          await s3.putObject(putObject)
           .promise()
         } catch(error) {
           throw new TRPCError({
@@ -85,6 +88,7 @@ export const generateRouter = createTRPCRouter({
         }
       }
 
+      // http://course-webdevcody-t3-2.s3-website.us-east-2.amazonaws.com
       const imageUrl = base64EncodedImage?.slice(0,4) === "http" ? base64EncodedImage : `https://${env.AWS_S3_BUCKET_NAME}.s3.${env.AWS_S3_REGION}.amazonaws.com/${icon.id}`
       return {
         imageUrl,
