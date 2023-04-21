@@ -12,6 +12,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import SiteHeader from "~/components/mui/layout/SiteHeader";
 import SiteTopNav from "~/components/mui/layout/SiteTopNav";
 
 
@@ -31,7 +32,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <SiteTopNav />
+        <SiteHeader />
+        {/* <SiteTopNav /> */}
         <Component {...pageProps} />
 
       {/* </ThemeProvider> */}
