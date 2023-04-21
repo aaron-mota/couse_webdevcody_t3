@@ -66,7 +66,7 @@ export const generateRouter = createTRPCRouter({
       })
 
       // (3) if DALL-E image (vs mock), save image to file management service (AWS S3)
-      if (base64EncodedImage?.slice(0,4) !== "http") {
+      if (!isMockImage(base64EncodedImage)) {
         try {
           await s3.putObject({
             Bucket: 'course-webdevcody-t3',
@@ -98,6 +98,10 @@ export const generateRouter = createTRPCRouter({
 
 
 // FUNCTIONS
+function isMockImage(image: string | undefined): boolean {
+  return image?.slice(0,4) === "http"
+}
+
 async function generateIcon(prompt: string): Promise<string | undefined> {
   if (env.MOCK_OPENAI == "true") {
     return "https://picsum.photos/400/400"
