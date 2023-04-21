@@ -1,10 +1,16 @@
-import { Button, Card, CardHeader, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TypographyProps } from '@mui/material'
+import { Button, Card, CardHeader, CardHeaderProps, CardProps, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TypographyProps } from '@mui/material'
 import React, { useState } from 'react'
 import { BadgeIndicator } from './BadgeIndicator'
 import { MoreVert } from '@mui/icons-material'
 import { signOut, useSession } from 'next-auth/react'
 
-export const UserCard = () => {
+
+interface UserCardProps extends CardProps {
+  cardHeaderProps?: CardHeaderProps;
+}
+
+
+export const UserCard = ({ cardHeaderProps, ...cardProps }: UserCardProps) => {
   const session = useSession()
   const isLoggedIn = !!session.data
 
@@ -27,21 +33,23 @@ export const UserCard = () => {
   
 
   return (
-  <>
+    <>
       <Card
         onClick={handleSignOut}
         sx={{cursor: "pointer"}}
+        {...cardProps}
       >
         <CardHeader
           avatar={<BadgeIndicator />}
           action={
-            <IconButton aria-label="settings" sx={{mt: 0.5}}>
+            <IconButton aria-label="settings" sx={{mt: 0.8}}>
               <MoreVert />
             </IconButton>
           }
           title={session.data?.user.name}
           subheader={session.data?.user.email}
           titleTypographyProps={titleTypographyProps}
+          {...cardHeaderProps}
         />
       </Card>
 

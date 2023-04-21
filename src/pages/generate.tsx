@@ -11,33 +11,34 @@ import { UserCard } from "~/components/mui/UserCard";
 
 
 const GeneratePage: NextPage = () => {
+  // GENERAL
   const session = useSession()
   const isLoggedIn = !!session.data
+  
 
-  const [form, setForm] = useState({
-    prompt: "",
-  })
+  // STATE
+  const [form, setForm] = useState({prompt: "",})
 
+
+  // DB REQUESTS
   const generateIcon = api.generate.generateIcon.useMutation({
     onSuccess: (data) => {
       console.log(data.message)
     }
   })
 
+
+  // FUNCTIONS
   function handleFormSubmit(e: React.FormEvent) {
     e.preventDefault();
-
     generateIcon.mutate(form)
   }
-  
   
   function updateForm(key: string) {  // NOTE:  "factory function" (returns a function)
     return (e: React.ChangeEvent<HTMLInputElement>) => {
       setForm((prev) => ({ ...prev, [key]: e.target.value }));
     };
   }
-
-
 
 
 
@@ -62,7 +63,7 @@ const GeneratePage: NextPage = () => {
               Sign in
             </ButtonStyled>
           :
-            <UserCard />
+            <UserCard sx={{mt: 2}} />
           }
 
         </Stack>
