@@ -8,6 +8,7 @@ interface TabNavItemProps {
   navStateActive: number;
   navState: number;
   docs: any[];
+  onClick?: () => void;
 }
 
 export function TabNavItem({
@@ -15,11 +16,13 @@ export function TabNavItem({
   navStateActive,
   navState,
   docs = [],
+  onClick,
 }: TabNavItemProps) {
   
   if (docs.length > 0) {
     return (
       <Stack
+        onClick={onClick}
         direction="row"
         gap={0.5}
         justifyContent="center"
@@ -38,6 +41,7 @@ export function TabNavItem({
   return (
     <>
       <Stack
+        onClick={onClick}
         direction="row"
         gap={0.5}
         justifyContent="center"

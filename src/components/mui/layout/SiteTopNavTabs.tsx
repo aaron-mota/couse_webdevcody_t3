@@ -1,24 +1,53 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { nanoid } from "nanoid"
 import { Box, Tabs, Tab, colors } from "@mui/material"
 import { TabNavItem } from "./TabNavItem"
-
+import { useRouter } from "next/router"
 
 interface Props {
   hidden?: boolean
 }
 
 
+// NOT QUITE WORKING...
+
 export function SiteTopNavTabs({
   hidden
 }: Props) {
-  const [navState, setNavState] = useState(0)
+  const router = useRouter()
+  // const pathName = router.pathname
 
-  const navItems = [
-    <TabNavItem label="Home" navStateActive={0} navState={navState} docs={[]} />,
-    <TabNavItem label="Generate Icons" navStateActive={1} navState={navState} docs={[]} />,
+
+  const navItemProperties = [
+    {
+      label: "Home",
+      path: "/",
+      docs: [],
+    },
+    {
+      label: "Generate Icons",
+      path: "/generate",
+      docs: [],
+    },
   ]
 
+  const [navState, setNavState] = useState(0)
+  const [navItems, setNavItems] = useState(navItemProperties.map(({label, docs}, i) => <TabNavItem label={label} navStateActive={navState} navState={i} docs={docs} />))
+
+  // useEffect(() => {
+  //   if (navItems.length > 0) {
+  //     console.log("navState", navState)
+  //     console.log("pathName", pathName)
+  //     const newPath = navItemProperties[navState]!.path
+  //     if (pathName != newPath) {
+  //       handleNavigate(newPath)
+  //     }
+  //   }
+  // }, [navState])
+
+  function handleNavigate(path: string) {
+    router.push(path)
+  }
 
   function handleChange(e: React.ChangeEvent<{}>, newValue: number) {
     // gets tab index from ChangeEvent
@@ -40,7 +69,7 @@ export function SiteTopNavTabs({
     >
       <Tabs
         value={navState}
-        onChange={handleChange}
+        onChange={(e, newValue) => handleChange(e, newValue)}
         visibleScrollbar
         TabIndicatorProps={{
           sx: {

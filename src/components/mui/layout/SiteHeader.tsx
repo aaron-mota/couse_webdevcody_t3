@@ -19,8 +19,8 @@ import { env } from '~/env.mjs';
 import { UserBadgeIndicator } from '../UserBadgeIndicator';
 import { UserCard } from '../UserCard';
 import { SignOutDialog } from '../SignOutDialog';
-import Link from 'next/link';
 import { LinkWrapped } from '../LinkWrapped';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -257,7 +257,7 @@ export default function SiteHeader() {
                 onClick={handleProfileMenuOpen}
                 color="inherit"
               >
-                <UserBadgeIndicator clickable />
+                <UserBadgeIndicator />
               </IconButton>
             </Box>
 
