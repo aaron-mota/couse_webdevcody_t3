@@ -56,6 +56,15 @@ model User {
     credits       Int       @default(5)
     accounts      Account[]
     sessions      Session[]
+    icons         Icon[]
+}
+
+model Icon {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    prompt    String
+    User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId    String
 }
 
 model VerificationToken {

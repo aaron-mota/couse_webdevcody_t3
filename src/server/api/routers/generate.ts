@@ -58,6 +58,12 @@ export const generateRouter = createTRPCRouter({
       // (2) enough credits (generate icon (fetch request to DALLE API))
       const base64EncodedImage = await generateIcon(input.prompt)
 
+      const icon = await ctx.prisma.icon.create({
+        data: {
+          prompt: input.prompt,
+          userId: ctx.session.user.id,
+        },
+      })
 
       // (3) if DALL-E image (vs mock), save image to file management service (AWS S3)
       if (base64EncodedImage?.slice(0,4) !== "http") {
@@ -66,7 +72,7 @@ export const generateRouter = createTRPCRouter({
             Bucket: 'course-webdevcody-t3',
             Body: Buffer.from(base64EncodedImage!, 'base64'),
             // Key: `my-image.png`,
-            Key: `${ctx.session.user.id}-${new Date().toISOString()}`,
+            Key: icon.id,
             ContentEncoding: 'base64',
             ContentType: 'image/png',
           })
