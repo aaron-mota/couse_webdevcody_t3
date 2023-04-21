@@ -11,7 +11,7 @@ const PageContainer = ({
   children
 }: Props) => {
   return (
-    <Stack justifyContent="center" alignItems="center" sx={{w: 1, height: "100vh", ...sx}}>
+    <Stack justifyContent="center" alignItems="center" sx={{width: 1, height: "100vh", ...sx}}>
       {children}
     </Stack>
   )

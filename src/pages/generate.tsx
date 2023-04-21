@@ -59,8 +59,9 @@ const GeneratePage: NextPage = () => {
   return (
     <>
       <PageContainer>
-        <Stack component="form" onSubmit={handleFormSubmit}>
 
+        {/* Form Area */}
+        <Stack component="form" onSubmit={handleFormSubmit}>
           <TextFieldStyled
             label="Prompt"
             value={form.prompt}
@@ -81,21 +82,19 @@ const GeneratePage: NextPage = () => {
               <UserCard sx={{mt: 2}} />
               <ButtonStyled onClick={() => buyCredits().catch(console.error)}>Buy Credits</ButtonStyled>
             </>
-
           }
+        </Stack>
 
-          <Stack justifyContent="center" alignItems="center" sx={{height: 400}}>
-            {isRequesting ?
-                <CircularProgress />
-            : imageUrl &&
-              <>
-                {/* <Image src={imageUrl} alt="Generated Icon" width={400} height={400} /> */}
-                <Box component="img" src={imageUrl} alt="Generated Icon" width={400} height={400} mt={4} />
-              </>
-            }
-          </Stack>
-
-
+        {/* Loading/Image Area */}
+        <Stack justifyContent="center" alignItems="center" sx={{height: imageUrl && 400}}>
+          {isRequesting ?
+              <CircularProgress />
+          : imageUrl &&
+            <>
+              {/* <Image src={imageUrl} alt="Generated Icon" width={400} height={400} /> */}
+              <Box component="img" src={imageUrl} alt="Generated Icon" width={400} height={400} mt={4} />
+            </>
+          }
         </Stack>
       </PageContainer>
 
@@ -105,5 +104,3 @@ const GeneratePage: NextPage = () => {
 };
 
 export default GeneratePage;
-
-
