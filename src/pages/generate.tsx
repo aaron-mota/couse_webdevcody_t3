@@ -81,8 +81,7 @@ const GeneratePage: NextPage = () => {
             </ButtonStyled>
           :
             <>
-              <UserCard sx={{mt: 2}} />
-              <ButtonStyled onClick={() => buyCredits().catch(console.error)}>Buy Credits</ButtonStyled>
+              <ButtonStyled onClick={() => buyCredits().catch(console.error)} sx={{mt: 0.5}}>Buy Credits</ButtonStyled>
             </>
           }
         </Stack>
