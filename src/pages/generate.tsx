@@ -38,6 +38,7 @@ const GeneratePage: NextPage = () => {
   function handleFormSubmit(e: React.FormEvent) {
     e.preventDefault();
     generateIcon.mutate(form)
+    setForm({prompt: ""})
   }
   
   function updateForm(key: string) {  // NOTE:  "factory function" (returns a function)
@@ -73,7 +74,10 @@ const GeneratePage: NextPage = () => {
           }
 
           {imageUrl && 
-            <Box component="img" src={imageUrl} alt="Generated Icon" width={400} height="auto" mt={4} />
+            <>
+              {/* <Image src={imageUrl} alt="Generated Icon" width={400} height={400} /> */}
+              <Box component="img" src={imageUrl} alt="Generated Icon" width={400} height={400} mt={4} />
+            </>
           }
 
 
