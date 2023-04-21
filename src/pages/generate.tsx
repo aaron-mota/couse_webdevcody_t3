@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Stack } from "@mui/material";
+import { Box, CircularProgress, Skeleton, Stack } from "@mui/material";
 import { type NextPage } from "next";
 import { signIn,  useSession } from "next-auth/react";
 import { useState } from "react";
@@ -79,8 +79,9 @@ const GeneratePage: NextPage = () => {
           }
 
           <Stack justifyContent="center" alignItems="center" sx={{height: 400}}>
-            {isRequesting && <CircularProgress />}
-            {imageUrl && 
+            {isRequesting ?
+                <CircularProgress />
+            : imageUrl &&
               <>
                 {/* <Image src={imageUrl} alt="Generated Icon" width={400} height={400} /> */}
                 <Box component="img" src={imageUrl.slice(0,4) === "http" ? imageUrl : `data:image/png;base64, ${imageUrl}`} alt="Generated Icon" width={400} height={400} mt={4} />
