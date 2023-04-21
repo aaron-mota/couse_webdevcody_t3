@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box, CircularProgress, Stack } from "@mui/material";
 import { type NextPage } from "next";
 import { signIn,  useSession } from "next-auth/react";
 import { useState } from "react";
@@ -22,6 +22,8 @@ const GeneratePage: NextPage = () => {
   // const [imageUrl, setImageUrl] = useState("")
   const [imageUrl, setImageUrl] = useState("")
 
+  const [isRequesting, setIsRequesting] = useState(false)
+
 
   // DB REQUESTS
   const generateIcon = api.generate.generateIcon.useMutation({
@@ -30,6 +32,9 @@ const GeneratePage: NextPage = () => {
       if (data.imageUrl) {
         setImageUrl(data.imageUrl)
       }
+    },
+    onSettled: () => {
+      setIsRequesting(false)
     }
   })
 
@@ -37,8 +42,8 @@ const GeneratePage: NextPage = () => {
   // FUNCTIONS
   function handleFormSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setIsRequesting(true)
     generateIcon.mutate(form)
-    setForm({prompt: ""})
   }
   
   function updateForm(key: string) {  // NOTE:  "factory function" (returns a function)
@@ -61,7 +66,7 @@ const GeneratePage: NextPage = () => {
             helperText="Enter a prompt to generate an icon"
           />
 
-          <ButtonStyled type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+          <ButtonStyled type="submit" variant="contained" color="primary" sx={{ mt: 2 }} disabled={isRequesting}>
             Generate icon
           </ButtonStyled>
 
@@ -73,12 +78,15 @@ const GeneratePage: NextPage = () => {
             <UserCard sx={{mt: 2}} />
           }
 
-          {imageUrl && 
-            <>
-              {/* <Image src={imageUrl} alt="Generated Icon" width={400} height={400} /> */}
-              <Box component="img" src={imageUrl.slice(0,4) === "http" ? imageUrl : `data:image/png;base64, ${imageUrl}`} alt="Generated Icon" width={400} height={400} mt={4} />
-            </>
-          }
+          <Stack justifyContent="center" alignItems="center" sx={{height: 400}}>
+            {isRequesting && <CircularProgress />}
+            {imageUrl && 
+              <>
+                {/* <Image src={imageUrl} alt="Generated Icon" width={400} height={400} /> */}
+                <Box component="img" src={imageUrl.slice(0,4) === "http" ? imageUrl : `data:image/png;base64, ${imageUrl}`} alt="Generated Icon" width={400} height={400} mt={4} />
+              </>
+            }
+          </Stack>
 
 
         </Stack>
