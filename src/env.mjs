@@ -23,6 +23,8 @@ const server = z.object({
   GOOGLE_CLIENT_SECRET: z.string(),
   OPENAI_API_KEY: z.string(),
   MOCK_OPENAI: z.string(),
+  AWS_ACCESS_KEY_ID: z.string(),
+  AWS_SECRET_ACCESS_KEY: z.string(),
 });
 
 /**
@@ -48,6 +50,8 @@ const processEnv = {
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   MOCK_OPENAI: process.env.MOCK_OPENAI,
+  AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+  AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 
