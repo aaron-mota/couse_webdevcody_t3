@@ -58,7 +58,9 @@ const GeneratePage: NextPage = () => {
 
   return (
     <>
-      <PageContainer>
+      <PageContainer
+        title="Generate"
+      >
 
         {/* Form Area */}
         <Stack component="form" onSubmit={handleFormSubmit}>
