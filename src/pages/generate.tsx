@@ -4,7 +4,7 @@ import { signIn,  useSession } from "next-auth/react";
 import { useState } from "react";
 import { ButtonStyled } from "~/components/mui/ButtonStyled";
 import { TextFieldStyled } from "~/components/mui/TextFieldStyled.";
-import { PageContainer } from "~/components/mui/PageContainer";
+import { PageContainer } from "~/components/mui/layout/PageContainer";
 import { api } from "~/utils/api";
 import { UserCard } from "~/components/mui/UserCard";
 import Image from "next/image";

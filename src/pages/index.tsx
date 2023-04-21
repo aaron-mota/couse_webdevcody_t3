@@ -2,7 +2,7 @@ import { Stack } from "@mui/material";
 import { type NextPage } from "next";
 import { signIn,  useSession } from "next-auth/react";
 import { ButtonStyled } from "~/components/mui/ButtonStyled";
-import { PageContainer } from "~/components/mui/PageContainer";
+import { PageContainer } from "~/components/mui/layout/PageContainer";
 import Link from "next/link";
 
 

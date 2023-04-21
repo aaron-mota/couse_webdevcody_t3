@@ -38,7 +38,7 @@ interface BadgeIndicatorProps extends BadgeProps {
 }
 
 
-export const BadgeIndicator = (props: BadgeIndicatorProps) => {
+export const UserBadgeIndicator = (props: BadgeIndicatorProps) => {
   const session = useSession()
   const isLoggedIn = !!session.data
 
