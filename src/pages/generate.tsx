@@ -26,9 +26,7 @@ const GeneratePage: NextPage = () => {
   // const [imageUrl, setImageUrl] = useState("")
   const [imageUrl, setImageUrl] = useState("")
 
-  const [isRequesting, setIsRequesting] = useState(false)
-
-
+  
   // DB REQUESTS
   const generateIcon = api.generate.generateIcon.useMutation({
     onSuccess: (data) => {
@@ -36,16 +34,12 @@ const GeneratePage: NextPage = () => {
         setImageUrl(data.imageUrl)
       }
     },
-    onSettled: () => {
-      setIsRequesting(false)
-    }
   })
 
 
   // FUNCTIONS
   function handleFormSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setIsRequesting(true)
     generateIcon.mutate(form)
   }
   
@@ -72,7 +66,7 @@ const GeneratePage: NextPage = () => {
             helperText="Enter a prompt to generate an icon"
           />
 
-          <ButtonStyled type="submit" variant="contained" color="primary" sx={{ mt: 2 }} disabled={isRequesting}>
+          <ButtonStyled type="submit" variant="contained" color="primary" sx={{ mt: 2 }} disabled={generateIcon.isLoading}>
             Generate icon
           </ButtonStyled>
 
@@ -82,14 +76,14 @@ const GeneratePage: NextPage = () => {
             </ButtonStyled>
           :
             <>
-              <ButtonStyled onClick={() => buyCredits().catch(console.error)} sx={{mt: 0.5}}>Buy Credits</ButtonStyled>
+              <ButtonStyled disabled={generateIcon.isLoading} onClick={() => buyCredits().catch(console.error)} sx={{mt: 0.5}}>Buy Credits</ButtonStyled>
             </>
           }
         </Stack>
 
         {/* Loading/Image Area */}
         <Stack justifyContent="center" alignItems="center" sx={{height: imageUrl && 400}}>
-          {isRequesting ?
+          {generateIcon.isLoading ?
               <CircularProgress />
           : imageUrl &&
             <>
