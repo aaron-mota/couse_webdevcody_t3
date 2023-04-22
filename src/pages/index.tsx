@@ -5,12 +5,15 @@ import { ButtonStyled } from "~/components/mui/ButtonStyled";
 import { PageContainer } from "~/components/mui/layout/PageContainer";
 import Link from "next/link";
 import { ImageWrapped } from "~/components/mui/ImageWrapped";
+import { useRouter } from "next/router";
+import LinkButton from "~/components/mui/LinkButton";
 
 
 
 
 
 const Home: NextPage = () => {
+
   // GENERAL
   const session = useSession()
   const isLoggedIn = !!session.data
@@ -40,6 +43,8 @@ export default Home;
 
 
 function HeroBanner() {
+  const router = useRouter()
+
   return (
     <Grid container sx={{maxWidth: 1400}}>
 
@@ -57,6 +62,9 @@ function HeroBanner() {
           <Typography variant="body2" component="h2" gutterBottom sx={{fontSize: "1.4rem", opacity: 0.6}}>
             Use AI to generate icons in seconds instead of paying a designer and waiting for them to create them for you.
           </Typography>
+          <LinkButton href={"/generate"} >
+              Start Generating Icons
+          </LinkButton>
         </Stack>
       </Grid>
 

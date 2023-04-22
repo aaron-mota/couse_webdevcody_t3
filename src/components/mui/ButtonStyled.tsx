@@ -1,7 +1,11 @@
 import { Button, ButtonProps } from '@mui/material'
 import React from 'react'
 
-export const ButtonStyled = (props: ButtonProps) => {
+interface ButtonStyledProps extends ButtonProps {
+  component?: React.ElementType
+}
+
+export const ButtonStyled = (props: ButtonStyledProps) => {
   return (
     <Button {...props} >{props.children}</Button>
   )
