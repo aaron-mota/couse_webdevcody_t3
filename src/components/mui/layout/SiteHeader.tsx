@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react';
+import { useState, type MouseEvent } from 'react';
 import { styled, alpha } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -233,7 +233,7 @@ export default function SiteHeader() {
 
             {/* LARGE DISPLAY */}
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <ButtonStyled color="inherit" onClick={() => router.push("/generate")}>
+              <ButtonStyled color="inherit" onClick={() => {router.push("/generate").catch(console.error)}}>
                 Generate Icons
               </ButtonStyled>
 

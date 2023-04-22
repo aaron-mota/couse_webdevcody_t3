@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { nanoid } from "nanoid"
 import { Box, Tabs, Tab } from "@mui/material"
 import { TabNavItem } from "./TabNavItem"
-import { useRouter } from "next/router"
 
 interface Props {
   hidden?: boolean
@@ -14,9 +13,6 @@ interface Props {
 export function SiteTopNavTabs({
   hidden
 }: Props) {
-  const router = useRouter()
-  // const pathName = router.pathname
-
 
   const navItemProperties = [
     {
@@ -32,7 +28,7 @@ export function SiteTopNavTabs({
   ]
 
   const [navState, setNavState] = useState(0)
-  const [navItems, setNavItems] = useState(navItemProperties.map(({label, docs}, i) => <TabNavItem key={label} label={label} navStateActive={navState} navState={i} docs={docs} />))
+  const [navItems] = useState(navItemProperties.map(({label, docs}, i) => <TabNavItem key={label} label={label} navStateActive={navState} navState={i} docs={docs} />))
 
   // useEffect(() => {
   //   if (navItems.length > 0) {
@@ -45,9 +41,9 @@ export function SiteTopNavTabs({
   //   }
   // }, [navState])
 
-  function handleNavigate(path: string) {
-    router.push(path)
-  }
+  // async function handleNavigate(path: string) {
+  //   router.push(path)
+  // }
 
   function handleChange(e: React.SyntheticEvent<Element, Event>, newValue: number) {
     // gets tab index from ChangeEvent
@@ -69,7 +65,7 @@ export function SiteTopNavTabs({
     >
       <Tabs
         value={navState}
-        onChange={(e, newValue) => handleChange(e, newValue)}
+        onChange={(e, newValue) => handleChange(e, newValue as number)}
         visibleScrollbar
         TabIndicatorProps={{
           sx: {

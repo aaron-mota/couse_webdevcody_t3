@@ -16,14 +16,14 @@ export default function SiteTopNav() {
   };
 
   const handleNavigation = (href: string) => {
-    router.push(href);
+    router.push(href).catch(console.error);
   };
   
 
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Tabs value={value} onChange={(e, newValue) => {handleChange(e, newValue as number)}} aria-label="basic tabs example">
           <Tab label="Home" onClick={() => handleNavigation("/")} />
           <Tab label="Generate Icons" onClick={() => handleNavigation("/generate")} />
         </Tabs>

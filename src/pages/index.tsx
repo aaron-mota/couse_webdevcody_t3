@@ -2,7 +2,6 @@ import { Grid, Stack, Typography } from "@mui/material";
 import { type NextPage } from "next";
 import { PageContainer } from "~/components/mui/layout/PageContainer";
 import { ImageWrapped } from "~/components/mui/ImageWrapped";
-import { useRouter } from "next/router";
 import { LinkButton } from "~/components/mui/LinkButton";
 
 
@@ -28,7 +27,6 @@ export default Home;
 
 
 function HeroBanner() {
-  const router = useRouter()
 
   return (
     <Grid container sx={{maxWidth: 1400}}>

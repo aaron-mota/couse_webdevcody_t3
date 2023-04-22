@@ -69,12 +69,12 @@ const GeneratePage: NextPage = () => {
           </ButtonStyled>
 
           {!isLoggedIn ?
-            <ButtonStyled onClick={() => signIn()}>
+            <ButtonStyled onClick={() => {signIn().catch(console.error)}}>
               Sign in
             </ButtonStyled>
           :
             <>
-              <ButtonStyled disabled={generateIcon.isLoading} onClick={() => buyCredits()} sx={{mt: 0.5}}>Buy Credits</ButtonStyled>
+              <ButtonStyled disabled={generateIcon.isLoading} onClick={() => {buyCredits().catch(console.error)}} sx={{mt: 0.5}}>Buy Credits</ButtonStyled>
             </>
           }
         </Stack>
