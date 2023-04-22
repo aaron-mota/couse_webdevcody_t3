@@ -9,6 +9,7 @@ import { api } from "~/utils/api";
 import { UserCard } from "~/components/mui/UserCard";
 import Image from "next/image";
 import { useBuyCredits } from "~/hooks/useBuyCredits";
+import { ImageWrapped } from "~/components/mui/ImageWrapped";
 
 
 const GeneratePage: NextPage = () => {
@@ -93,7 +94,7 @@ const GeneratePage: NextPage = () => {
           : imageUrl &&
             <>
               {/* <Image src={imageUrl} alt="Generated Icon" width={400} height={400} /> */}
-              <Box component="img" src={imageUrl} alt="Generated Icon" width={400} height={400} mt={4} />
+              <ImageWrapped src={imageUrl} alt="Generated Icon" width={400} height={400} sx={{mt: 4}} />
             </>
           }
         </Stack>

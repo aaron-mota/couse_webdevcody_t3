@@ -4,6 +4,7 @@ import { signIn,  useSession } from "next-auth/react";
 import { ButtonStyled } from "~/components/mui/ButtonStyled";
 import { PageContainer } from "~/components/mui/layout/PageContainer";
 import Link from "next/link";
+import { ImageWrapped } from "~/components/mui/ImageWrapped";
 
 
 
@@ -44,7 +45,7 @@ function HeroBanner() {
 
       <Grid item xs={6}>
         <Stack justifyContent="center" alignItems="center">
-          <Box component={"img"} src={"/banner-transparent.png"} sx={{width: "auto", height: 300}} alt="an image of a bunch of nice looking icons" />
+          <ImageWrapped src={"/banner-transparent.png"} sx={{width: "auto", height: 300}} alt="an image of a bunch of nice looking icons" />
         </Stack>
       </Grid>
 

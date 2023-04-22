@@ -1,5 +1,5 @@
 import { useState, MouseEvent } from 'react';
-import { styled, alpha } from '@mui/material';
+import { styled, alpha, Button } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -20,6 +20,8 @@ import { UserBadgeIndicator } from '../UserBadgeIndicator';
 import { UserCard } from '../UserCard';
 import { SignOutDialog } from '../SignOutDialog';
 import { LinkWrapped } from '../LinkWrapped';
+import { ButtonStyled } from '../ButtonStyled';
+import { useRouter } from 'next/router';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -63,6 +65,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SiteHeader() {
+  const router = useRouter()
+
   // SignOutDialog
   const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
   const handleSignOut = () => {
@@ -229,6 +233,10 @@ export default function SiteHeader() {
 
             {/* LARGE DISPLAY */}
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <ButtonStyled color="inherit" onClick={() => router.push("/generate")}>
+                Generate Icons
+              </ButtonStyled>
+
               {/* Messages */}
               <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                 <Badge badgeContent={4} color="error">
