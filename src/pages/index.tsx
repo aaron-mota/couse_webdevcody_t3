@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { type NextPage } from "next";
 import { signIn,  useSession } from "next-auth/react";
 import { ButtonStyled } from "~/components/mui/ButtonStyled";
@@ -6,10 +6,6 @@ import { PageContainer } from "~/components/mui/layout/PageContainer";
 import Link from "next/link";
 
 
-
-function HeroBanner() {
-  // TODO: Add a hero banner
-}
 
 
 
@@ -22,13 +18,15 @@ const Home: NextPage = () => {
     <>
       <PageContainer>
 
-        <Box>Hello</Box>
-
-        {/* <Stack justifyContent={"center"} alignItems={"center"}>
-          <Link href="/generate">
+        <Stack alignItems="center" justifyContent="center" sx={{width: 1, height: 1}}>
+          <HeroBanner />
+          {/* <Link href="/generate">
             <ButtonStyled variant="contained">Go Generate an Icon</ButtonStyled>
-          </Link>
-        </Stack> */}
+          </Link> */}
+        </Stack>
+
+
+
 
       </PageContainer>
 
@@ -40,3 +38,27 @@ const Home: NextPage = () => {
 export default Home;
 
 
+function HeroBanner() {
+  return (
+    <Grid container maxWidth={0.8}>
+
+      <Grid item xs={6}>
+        <Stack justifyContent="center" alignItems="center">
+          <Box component={"img"} src={"/banner-transparent.png"} sx={{width: 400, height: 300}} alt="an image of a bunch of nice looking icons" />
+        </Stack>
+      </Grid>
+
+      <Grid item xs={6}>
+        <Stack justifyContent="center" alignItems="center" sx={{width: 1, height: 1}}>
+          <Typography variant="h3" component="h1" gutterBottom sx={{fontWeight: 500}}>
+            Generate icons with a click of a button
+          </Typography>
+          <Typography variant="body2" component="h2" gutterBottom sx={{fontSize: "1.4rem"}}>
+            Use AI to generate icons in seconds instead of paying a designer and waiting for them to create them for you.
+          </Typography>
+        </Stack>
+      </Grid>
+
+    </Grid>
+  )
+}

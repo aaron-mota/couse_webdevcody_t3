@@ -30,7 +30,7 @@ const PageContainer = ({
 
       <SiteHeader />
       {/* <SiteTopNav /> */}
-      <SiteTopNavTabs />
+      {/* <SiteTopNavTabs /> */}
 
       <Stack justifyContent="center" alignItems="center" sx={{width: 1, height: "100vh", ...sx}}>
         {children}
