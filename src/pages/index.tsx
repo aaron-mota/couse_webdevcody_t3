@@ -55,13 +55,15 @@ function HeroBanner() {
       </Grid>
 
       <Grid item xs={6}>
-        <Stack justifyContent="center" alignItems="start" sx={{width: 1, height: 1}}>
-          <Typography variant="h2" component="h1" gutterBottom sx={{fontWeight: 500, opacity: 0.8}}>
-            Generate icons with a click of a button
-          </Typography>
-          <Typography variant="body2" component="h2" gutterBottom sx={{fontSize: "1.4rem", opacity: 0.6}}>
-            Use AI to generate icons in seconds instead of paying a designer and waiting for them to create them for you.
-          </Typography>
+        <Stack justifyContent="center" alignItems="start" gap={2} sx={{width: 1, height: 1}}>
+          <Stack>
+            <Typography variant="h2" component="h1" gutterBottom sx={{fontWeight: 500, opacity: 0.8}}>
+              Generate icons with a click of a button
+            </Typography>
+            <Typography variant="body2" component="h2" gutterBottom sx={{fontSize: "1.4rem", opacity: 0.6}}>
+              Use AI to generate icons in seconds instead of paying a designer and waiting for them to create them for you.
+            </Typography>
+          </Stack>
           <LinkButton href={"/generate"} >
               Start Generating Icons
           </LinkButton>
