@@ -1,4 +1,4 @@
-import { Avatar, Badge, BadgeProps, styled } from '@mui/material';
+import { Avatar, Badge, type BadgeProps, styled } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import React from 'react'
 
@@ -40,7 +40,6 @@ interface BadgeIndicatorProps extends BadgeProps {
 
 export const UserBadgeIndicator = (props: BadgeIndicatorProps) => {
   const session = useSession()
-  const isLoggedIn = !!session.data
 
   return (
     <BadgeIndicatorStyled 

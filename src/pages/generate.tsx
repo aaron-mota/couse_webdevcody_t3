@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Skeleton, Stack } from "@mui/material";
+import { CircularProgress, Stack } from "@mui/material";
 import { type NextPage } from "next";
 import { signIn,  useSession } from "next-auth/react";
 import { useState } from "react";
@@ -6,8 +6,6 @@ import { ButtonStyled } from "~/components/mui/ButtonStyled";
 import { TextFieldStyled } from "~/components/mui/TextFieldStyled.";
 import { PageContainer } from "~/components/mui/layout/PageContainer";
 import { api } from "~/utils/api";
-import { UserCard } from "~/components/mui/UserCard";
-import Image from "next/image";
 import { useBuyCredits } from "~/hooks/useBuyCredits";
 import { ImageWrapped } from "~/components/mui/ImageWrapped";
 
@@ -71,12 +69,12 @@ const GeneratePage: NextPage = () => {
           </ButtonStyled>
 
           {!isLoggedIn ?
-            <ButtonStyled onClick={() => signIn().catch(console.error)}>
+            <ButtonStyled onClick={() => signIn()}>
               Sign in
             </ButtonStyled>
           :
             <>
-              <ButtonStyled disabled={generateIcon.isLoading} onClick={() => buyCredits().catch(console.error)} sx={{mt: 0.5}}>Buy Credits</ButtonStyled>
+              <ButtonStyled disabled={generateIcon.isLoading} onClick={() => buyCredits()} sx={{mt: 0.5}}>Buy Credits</ButtonStyled>
             </>
           }
         </Stack>

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Box, Link as MUILink, SxProps, LinkProps, Theme } from '@mui/material'
+import type { LinkProps } from '@mui/material'
+import { Box, Link as MUILink } from '@mui/material'
 import Link from 'next/link'
 
 

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { nanoid } from "nanoid"
-import { Box, Tabs, Tab, colors } from "@mui/material"
+import { Box, Tabs, Tab } from "@mui/material"
 import { TabNavItem } from "./TabNavItem"
 import { useRouter } from "next/router"
 
@@ -32,7 +32,7 @@ export function SiteTopNavTabs({
   ]
 
   const [navState, setNavState] = useState(0)
-  const [navItems, setNavItems] = useState(navItemProperties.map(({label, docs}, i) => <TabNavItem label={label} navStateActive={navState} navState={i} docs={docs} />))
+  const [navItems, setNavItems] = useState(navItemProperties.map(({label, docs}, i) => <TabNavItem key={label} label={label} navStateActive={navState} navState={i} docs={docs} />))
 
   // useEffect(() => {
   //   if (navItems.length > 0) {
@@ -49,7 +49,7 @@ export function SiteTopNavTabs({
     router.push(path)
   }
 
-  function handleChange(e: React.ChangeEvent<{}>, newValue: number) {
+  function handleChange(e: React.SyntheticEvent<Element, Event>, newValue: number) {
     // gets tab index from ChangeEvent
     setNavState(newValue)
   }

@@ -1,4 +1,5 @@
-import { Button, ButtonProps } from '@mui/material'
+import type { ButtonProps } from '@mui/material'
+import { Button } from '@mui/material'
 import React from 'react'
 
 interface ButtonStyledProps extends ButtonProps {

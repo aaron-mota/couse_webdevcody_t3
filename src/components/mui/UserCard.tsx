@@ -1,8 +1,9 @@
-import { Button, Card, CardHeader, CardHeaderProps, CardProps, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TypographyProps } from '@mui/material'
+import type { CardHeaderProps, CardProps, TypographyProps } from '@mui/material'
+import { Card, CardHeader, IconButton } from '@mui/material'
 import React, { useState } from 'react'
 import { UserBadgeIndicator } from './UserBadgeIndicator'
 import MoreVert from '@mui/icons-material/MoreVert'
-import { signOut, useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { SignOutDialog } from './SignOutDialog'
 
 
@@ -15,7 +16,6 @@ interface UserCardProps extends CardProps {
 
 export const UserCard = ({ appBar, menuItem, cardHeaderProps, ...cardProps }: UserCardProps) => {
   const session = useSession()
-  const isLoggedIn = !!session.data
 
   const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
 

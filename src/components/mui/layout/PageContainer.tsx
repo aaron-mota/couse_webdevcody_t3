@@ -1,15 +1,14 @@
+import type { SxProps } from '@mui/material'
 import { Stack, Toolbar } from '@mui/material'
 import Head from 'next/head'
 import React from 'react'
 import SiteHeader from './SiteHeader'
-import SiteTopNav from './SiteTopNav'
 import { env } from '~/env.mjs'
-import { SiteTopNavTabs } from './SiteTopNavTabs'
 
 type Props = {
   children: React.ReactNode,
   title?: string,
-  sx?: {}
+  sx?: SxProps
 }
 
 const PageContainer = ({

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Box, SxProps } from '@mui/material'
+import type { SxProps } from '@mui/material'
+import { Box } from '@mui/material'
 
 interface ImageWrappedProps extends React.ComponentPropsWithoutRef<"img"> {
   sx?: SxProps,

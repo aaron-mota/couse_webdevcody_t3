@@ -1,22 +1,15 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Grid, Stack, Typography } from "@mui/material";
 import { type NextPage } from "next";
-import { signIn,  useSession } from "next-auth/react";
-import { ButtonStyled } from "~/components/mui/ButtonStyled";
 import { PageContainer } from "~/components/mui/layout/PageContainer";
-import Link from "next/link";
 import { ImageWrapped } from "~/components/mui/ImageWrapped";
 import { useRouter } from "next/router";
-import LinkButton from "~/components/mui/LinkButton";
+import { LinkButton } from "~/components/mui/LinkButton";
 
 
 
 
 
 const Home: NextPage = () => {
-
-  // GENERAL
-  const session = useSession()
-  const isLoggedIn = !!session.data
 
   return (
     <>

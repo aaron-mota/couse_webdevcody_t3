@@ -1,7 +1,8 @@
 import React from 'react'
+import Link from 'next/link'
+import type { LinkProps } from 'next/link'
 import { ButtonStyled } from './ButtonStyled'
-import Link, { LinkProps } from 'next/link'
-import { ButtonProps } from '@mui/material'
+import type { ButtonProps } from '@mui/material'
 
 interface LinkButtonProps extends LinkProps {
   buttonProps?: ButtonProps,
@@ -18,4 +19,4 @@ const LinkButton = ({buttonProps, ...props}: LinkButtonProps) => {
   )
 }
 
-export default LinkButton
+export { LinkButton }
