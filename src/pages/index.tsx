@@ -44,14 +44,14 @@ function HeroBanner() {
     <Grid container sx={{maxWidth: 1400}}>
 
       <Grid item xs={6}>
-        <Stack justifyContent="center" alignItems="center">
-          <ImageWrapped src={"/banner-transparent.png"} sx={{width: "auto", height: 300}} alt="an image of a bunch of nice looking icons" />
+        <Stack justifyContent="center" alignItems="center" sx={{p: 10}}>
+          <ImageWrapped src={"/banner-transparent.png"} sx={{width: 1, height: "auto"}} alt="an image of a bunch of nice looking icons" />
         </Stack>
       </Grid>
 
       <Grid item xs={6}>
         <Stack justifyContent="center" alignItems="start" sx={{width: 1, height: 1}}>
-          <Typography variant="h3" component="h1" gutterBottom sx={{fontWeight: 500, opacity: 0.8}}>
+          <Typography variant="h2" component="h1" gutterBottom sx={{fontWeight: 500, opacity: 0.8}}>
             Generate icons with a click of a button
           </Typography>
           <Typography variant="body2" component="h2" gutterBottom sx={{fontSize: "1.4rem", opacity: 0.6}}>
