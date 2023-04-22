@@ -19,9 +19,9 @@ const openai = new OpenAIApi(configuration);
 // S3 API (AWS S3)
 import AWS from "aws-sdk"
 const s3 = new AWS.S3({
-  accessKeyId: env.AWS_S3_ACCESS_KEY,
-  secretAccessKey: env.AWS_S3_SECRET_ACCESS_KEY,
-  region: env.AWS_S3_REGION,
+  accessKeyId: env.S3_ACCESS_KEY,
+  secretAccessKey: env.S3_SECRET_ACCESS_KEY,
+  region: env.S3_REGION,
 })
 
 
@@ -73,7 +73,7 @@ export const generateRouter = createTRPCRouter({
       if (!isMockImage(base64EncodedImage)) {
         try {
           const putObject = {
-            Bucket: env.AWS_S3_BUCKET_NAME,
+            Bucket: env.S3_BUCKET_NAME,
             Body: Buffer.from(base64EncodedImage!, 'base64'),
             Key: icon.id,
             ContentEncoding: 'base64',
@@ -91,7 +91,7 @@ export const generateRouter = createTRPCRouter({
       }
 
       // http://course-webdevcody-t3-2.s3-website.us-east-2.amazonaws.com
-      const imageUrl = base64EncodedImage?.slice(0,4) === "http" ? base64EncodedImage : `https://${env.AWS_S3_BUCKET_NAME}.s3.${env.AWS_S3_REGION}.amazonaws.com/${icon.id}`
+      const imageUrl = base64EncodedImage?.slice(0,4) === "http" ? base64EncodedImage : `https://${env.S3_BUCKET_NAME}.s3.${env.S3_REGION}.amazonaws.com/${icon.id}`
       return {
         imageUrl,
       }
