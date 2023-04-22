@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material'
+import { Stack, Toolbar } from '@mui/material'
 import Head from 'next/head'
 import React from 'react'
 import SiteHeader from './SiteHeader'
@@ -34,6 +34,7 @@ const PageContainer = ({
         {/* <SiteTopNavTabs /> */}
 
         <Stack justifyContent="center" alignItems="center" sx={{width: 1, height: 1, ...sx}}>
+          <Toolbar variant="dense" />
           {children}
         </Stack>
       </Stack>

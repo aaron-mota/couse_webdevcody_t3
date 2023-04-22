@@ -22,19 +22,11 @@ const Home: NextPage = () => {
     <>
       <PageContainer>
 
-        <Stack alignItems="center" justifyContent="center" sx={{width: 1, height: 1, px: 2}}>
+        <Stack alignItems="center" justifyContent="start" sx={{width: 1, height: 1, px: 2}}>
           <HeroBanner />
-          {/* <Link href="/generate">
-            <ButtonStyled variant="contained">Go Generate an Icon</ButtonStyled>
-          </Link> */}
         </Stack>
 
-
-
-
       </PageContainer>
-
-
     </>
   );
 };
@@ -48,13 +40,13 @@ function HeroBanner() {
   return (
     <Grid container sx={{maxWidth: 1400}}>
 
-      <Grid item xs={6}>
-        <Stack justifyContent="center" alignItems="center" sx={{p: 10}}>
-          <ImageWrapped src={"/banner-transparent.png"} sx={{width: 1, height: "auto"}} alt="an image of a bunch of nice looking icons" />
+      <Grid item xs={12} md={6}>
+        <Stack justifyContent="center" alignItems="center" sx={{p: {xs: 20, md: 10}, pt: {xs: 2, md: 10}}}>
+          <ImageWrapped src={"/banner-transparent.png"} sx={{width: 1, height: "auto", minWidth: 400}} alt="an image of a bunch of nice looking icons" />
         </Stack>
       </Grid>
 
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Stack justifyContent="center" alignItems="start" gap={2} sx={{width: 1, height: 1}}>
           <Stack>
             <Typography variant="h2" component="h1" gutterBottom sx={{fontWeight: 500, opacity: 0.8}}>

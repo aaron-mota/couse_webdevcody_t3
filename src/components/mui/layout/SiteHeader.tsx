@@ -238,14 +238,14 @@ export default function SiteHeader() {
               </ButtonStyled>
 
               {/* Messages */}
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+              {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                 <Badge badgeContent={4} color="error">
                   <MailIcon />
                 </Badge>
-              </IconButton>
+              </IconButton> */}
 
               {/* Notifications */}
-              <IconButton
+              {/* <IconButton
                 size="large"
                 aria-label="show 17 new notifications"
                 color="inherit"
@@ -253,7 +253,7 @@ export default function SiteHeader() {
                 <Badge badgeContent={17} color="error">
                   <NotificationsIcon />
                 </Badge>
-              </IconButton>
+              </IconButton> */}
               
               {/* Account/Avatar */}
               <IconButton
