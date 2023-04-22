@@ -28,12 +28,14 @@ const PageContainer = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SiteHeader />
-      {/* <SiteTopNav /> */}
-      {/* <SiteTopNavTabs /> */}
+      <Stack justifyContent="start" alignItems="stretch" sx={{width: 1, height: "100vh"}}>
+        <SiteHeader />
+        {/* <SiteTopNav /> */}
+        {/* <SiteTopNavTabs /> */}
 
-      <Stack justifyContent="center" alignItems="center" sx={{width: 1, height: "100vh", ...sx}}>
-        {children}
+        <Stack justifyContent="center" alignItems="center" sx={{width: 1, height: 1, ...sx}}>
+          {children}
+        </Stack>
       </Stack>
     </>
   )

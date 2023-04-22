@@ -19,7 +19,7 @@ const Home: NextPage = () => {
     <>
       <PageContainer>
 
-        <Stack alignItems="center" justifyContent="center" sx={{width: 1, height: 1}}>
+        <Stack alignItems="center" justifyContent="center" sx={{width: 1, height: 1, px: 2}}>
           <HeroBanner />
           {/* <Link href="/generate">
             <ButtonStyled variant="contained">Go Generate an Icon</ButtonStyled>
@@ -41,7 +41,7 @@ export default Home;
 
 function HeroBanner() {
   return (
-    <Grid container maxWidth={0.8}>
+    <Grid container sx={{maxWidth: 1400}}>
 
       <Grid item xs={6}>
         <Stack justifyContent="center" alignItems="center">
@@ -50,7 +50,7 @@ function HeroBanner() {
       </Grid>
 
       <Grid item xs={6}>
-        <Stack justifyContent="center" alignItems="center" sx={{width: 1, height: 1}}>
+        <Stack justifyContent="center" alignItems="start" sx={{width: 1, height: 1}}>
           <Typography variant="h3" component="h1" gutterBottom sx={{fontWeight: 500, opacity: 0.8}}>
             Generate icons with a click of a button
           </Typography>
