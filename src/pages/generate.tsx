@@ -74,9 +74,6 @@ const GeneratePage: NextPage = () => {
               <ButtonStyled onClick={() => {signIn().catch(console.error)}}>
                 Sign in
               </ButtonStyled>
-              {/* <ButtonStyled onClick={() => {signIn("google").catch(console.error)}}>
-                Sign in with Google
-              </ButtonStyled> */}
               <ButtonSignIn service="google" />
             </>
           :

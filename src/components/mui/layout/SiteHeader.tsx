@@ -22,6 +22,7 @@ import { SignOutDialog } from '../SignOutDialog';
 import { LinkWrapped } from '../LinkWrapped';
 import { ButtonStyled } from '../ButtonStyled';
 import { useRouter } from 'next/router';
+import { Stack } from '@mui/material';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -206,12 +207,19 @@ export default function SiteHeader() {
               variant="h6"
               noWrap
               component="div"
-              sx={{ display: { xs: 'none', sm: 'block' }, cursor: "pointer"}}
+              sx={{ display: { xs: 'none', sm: 'block' }, cursor: "pointer", mr: 2}}
             >
               <LinkWrapped href="/" sx={{color: "background.default"}}>
                 {env.NEXT_PUBLIC_APP_NAME}
               </LinkWrapped>
             </Typography>
+
+            <ButtonStyled color="inherit" onClick={() => {router.push("/generate").catch(console.error)}}>
+              Generate Icons
+            </ButtonStyled>
+
+            {/* SPACER */}
+            <Box sx={{ flexGrow: 1 }} />
 
             {/* Search */}
             <Search>
@@ -225,17 +233,12 @@ export default function SiteHeader() {
               />
             </Search>
 
-            {/* SPACER */}
-            <Box sx={{ flexGrow: 1 }} />
-
 
             {/* RIGHT */}
 
             {/* LARGE DISPLAY */}
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <ButtonStyled color="inherit" onClick={() => {router.push("/generate").catch(console.error)}}>
-                Generate Icons
-              </ButtonStyled>
+
 
               {/* Messages */}
               {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
