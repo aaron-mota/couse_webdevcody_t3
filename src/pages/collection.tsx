@@ -1,11 +1,9 @@
-import { CircularProgress, Paper, Stack, Typography } from "@mui/material";
+import { CircularProgress, Stack, Typography } from "@mui/material";
 import { type NextPage } from "next";
 import { PageContainer } from "~/components/mui/layout/PageContainer";
 import { api } from "~/utils/api";
-import { ImageWrapped } from "~/components/mui/ImageWrapped";
 import type { Icon } from "@prisma/client";
 import { useEffect } from "react";
-import { Box } from "@mui/material";
 import IconApp from "~/components/mui/app/IconApp";
 
 
@@ -39,7 +37,7 @@ const Collection: NextPage = () => {
           {icons.isLoading ?
             <CircularProgress />
           : icons.data?.map((icon: Icon) =>
-            <IconApp icon={icon} />
+            <IconApp key={icon.id} icon={icon} />
           )}
         </Stack>
       </PageContainer>

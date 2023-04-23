@@ -7,7 +7,6 @@ import { TextFieldStyled } from "~/components/mui/TextFieldStyled.";
 import { PageContainer } from "~/components/mui/layout/PageContainer";
 import { api } from "~/utils/api";
 import { useBuyCredits } from "~/hooks/useBuyCredits";
-import { ImageWrapped } from "~/components/mui/ImageWrapped";
 import { ButtonSignIn } from "~/components/mui/ButtonSignIn";
 import IconApp from "~/components/mui/app/IconApp";
 
