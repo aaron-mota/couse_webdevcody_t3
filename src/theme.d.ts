@@ -4,7 +4,7 @@
 // custom MUI theme (TS): https://stackoverflow.com/questions/64908532/extending-material-ui-theme-via-module-augmentation-not-working-correctly
 
 import '@mui/material/styles'
-import { PaletteColorOptions } from "@mui/material";
+import type { PaletteColorOptions } from "@mui/material";
 
 declare module '@mui/material/styles' {
   interface Theme {
