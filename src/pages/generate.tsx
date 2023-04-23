@@ -9,6 +9,7 @@ import { api } from "~/utils/api";
 import { useBuyCredits } from "~/hooks/useBuyCredits";
 import { ImageWrapped } from "~/components/mui/ImageWrapped";
 import { ButtonSignIn } from "~/components/mui/ButtonSignIn";
+import IconApp from "~/components/mui/app/IconApp";
 
 
 const GeneratePage: NextPage = () => {
@@ -86,12 +87,9 @@ const GeneratePage: NextPage = () => {
         {/* Loading/Image Area */}
         <Stack justifyContent="center" alignItems="center" sx={{height: imageUrl && 400}}>
           {generateIcon.isLoading ?
-              <CircularProgress />
+            <CircularProgress />
           : imageUrl &&
-            <>
-              {/* <Image src={imageUrl} alt="Generated Icon" width={400} height={400} /> */}
-              <ImageWrapped src={imageUrl} alt="Generated Icon" width={400} height={400} sx={{mt: 4}} />
-            </>
+            <IconApp imageUrl={imageUrl} />
           }
         </Stack>
       </PageContainer>

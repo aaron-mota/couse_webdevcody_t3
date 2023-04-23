@@ -36,6 +36,10 @@ declare module '@mui/material' {
   // IMPORTANT: if looking to use custom colors in certain components (e.g. Button), MUST also extend their props here!
   // https://stackoverflow.com/questions/72720524/typescript-react-mui-use-custom-color-on-button-component
   // ...might have to change to 'googleSignIn: true' (per comment on StackOverflow)
+  
+  // interface ButtonProps {
+  //   sx?: SxProps
+  // }
   interface ButtonPropsColorOverrides {
     googleSignIn,
   }

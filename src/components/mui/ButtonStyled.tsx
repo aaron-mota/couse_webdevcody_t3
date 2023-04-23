@@ -3,7 +3,8 @@ import { Button } from '@mui/material'
 import React from 'react'
 
 interface ButtonStyledProps extends ButtonProps {
-  component?: React.ElementType
+  component?: React.ElementType,
+  // pill?: boolean, // TODO: wasn't working for some reason...
 }
 
 export const ButtonStyled = (props: ButtonStyledProps) => {

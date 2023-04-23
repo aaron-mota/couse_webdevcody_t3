@@ -213,10 +213,13 @@ export default function SiteHeader() {
               </LinkWrapped>
             </Typography>
 
+            <ButtonStyled color="inherit" onClick={() => {router.push("/community").catch(console.error)}}>
+              Community
+            </ButtonStyled>
             <ButtonStyled color="inherit" onClick={() => {router.push("/collection").catch(console.error)}}>
               Collection
             </ButtonStyled>
-            <ButtonStyled color="inherit" onClick={() => {router.push("/generate").catch(console.error)}}>
+            <ButtonStyled variant="outlined" color="inherit" onClick={() => {router.push("/generate").catch(console.error)}}sx={{ml: 1, borderRadius: 400}}>
               Generate Icons
             </ButtonStyled>
 
