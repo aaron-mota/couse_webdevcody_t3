@@ -1,10 +1,11 @@
-import { CircularProgress, Stack, Typography } from "@mui/material";
+import { CircularProgress, Paper, Stack, Typography } from "@mui/material";
 import { type NextPage } from "next";
 import { PageContainer } from "~/components/mui/layout/PageContainer";
 import { api } from "~/utils/api";
 import { ImageWrapped } from "~/components/mui/ImageWrapped";
 import type { Icon } from "@prisma/client";
 import { useEffect } from "react";
+import { Box } from "@mui/material";
 
 
 
@@ -30,16 +31,20 @@ const Collection: NextPage = () => {
         title="Collection"
       >
 
-        <Typography>Your Icons</Typography>
-
+        <Typography variant="h4" sx={{mb:6}}>Your Icons</Typography>
+      
         {/* Loading/Image Area */}
-        <Stack justifyContent="center" alignItems="center" sx={{minHeight: 400}}>
+        <Stack direction="row" gap={2} sx={{maxWidth: 1000, flexWrap: "wrap"}}>
           { icons.isLoading ?
               <CircularProgress />
           : icons.data?.map((icon: Icon) => {
               // const imageUrl = `https://${env.S3_BUCKET_NAME}.s3.${env.S3_REGION}.amazonaws.com/${icon.id}`
               const imageUrl = `https://course-webdevcody-t3-2.s3.us-east-2.amazonaws.com/${icon.id}`
-              return <ImageWrapped key={icon.id} src={imageUrl} alt={icon.prompt} width={100} height={100} sx={{mt: 4}} />
+              return (
+                <Paper elevation={4}>
+                  <ImageWrapped key={icon.id} src={imageUrl} alt={icon.prompt} width={200} height={200} />
+                </Paper>
+              )
             })
           }
         </Stack>
