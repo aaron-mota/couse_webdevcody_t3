@@ -41,8 +41,6 @@ interface BadgeIndicatorProps extends BadgeProps {
 export const UserBadgeIndicator = (props: BadgeIndicatorProps) => {
   const session = useSession()
 
-  console.log("session", session)
-
   return (
     <BadgeIndicatorStyled 
       overlap="circular"

@@ -8,6 +8,7 @@ import { PageContainer } from "~/components/mui/layout/PageContainer";
 import { api } from "~/utils/api";
 import { useBuyCredits } from "~/hooks/useBuyCredits";
 import { ImageWrapped } from "~/components/mui/ImageWrapped";
+import { ButtonSignIn } from "~/components/mui/ButtonSignIn";
 
 
 const GeneratePage: NextPage = () => {
@@ -69,9 +70,15 @@ const GeneratePage: NextPage = () => {
           </ButtonStyled>
 
           {!isLoggedIn ?
-            <ButtonStyled onClick={() => {signIn().catch(console.error)}}>
-              Sign in
-            </ButtonStyled>
+            <>
+              <ButtonStyled onClick={() => {signIn().catch(console.error)}}>
+                Sign in
+              </ButtonStyled>
+              {/* <ButtonStyled onClick={() => {signIn("google").catch(console.error)}}>
+                Sign in with Google
+              </ButtonStyled> */}
+              <ButtonSignIn service="google" />
+            </>
           :
             <>
               <ButtonStyled disabled={generateIcon.isLoading} onClick={() => {buyCredits().catch(console.error)}} sx={{mt: 0.5}}>Buy Credits</ButtonStyled>
