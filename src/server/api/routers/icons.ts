@@ -14,6 +14,9 @@ export const iconsRouter = createTRPCRouter({
       const icons = await ctx.prisma.icon.findMany({
         where: {
           userId: ctx.session.user.id
+        },
+        orderBy: {
+          createdAt: 'desc'
         }
       })
       return icons

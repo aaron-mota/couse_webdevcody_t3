@@ -1,6 +1,7 @@
 import { Avatar, Badge, type BadgeProps, styled } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import React from 'react'
+import { api } from '~/utils/api';
 
 
 const BadgeIndicatorStyled = styled(Badge)(({ theme }) => ({
@@ -35,11 +36,25 @@ const BadgeIndicatorStyled = styled(Badge)(({ theme }) => ({
 
 interface BadgeIndicatorProps extends BadgeProps {
   clickable?: boolean;
+  userId?: string;
 }
 
 
 export const UserBadgeIndicator = (props: BadgeIndicatorProps) => {
   const session = useSession()
+
+  let name = ""
+  let image = ""
+
+  if (props.userId) {
+    const user = api.user.getUserById.useQuery({userId: props.userId})
+    name = user.data?.name ?? ""
+    image = user.data?.image ?? ""
+  }
+  else {
+    name = session.data?.user.name ?? ""
+    image = session.data?.user.image ?? ""
+  }
 
   return (
     <BadgeIndicatorStyled 
@@ -51,7 +66,7 @@ export const UserBadgeIndicator = (props: BadgeIndicatorProps) => {
       }}
       {...props}
     >
-      {props.children ? props.children : <Avatar alt={session.data?.user.name ?? ''} src={session.data?.user.image ?? ''} />}
+      {props.children ? props.children : <Avatar alt={name} src={image} />}
     </BadgeIndicatorStyled>
   )
 }
