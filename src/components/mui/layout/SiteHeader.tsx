@@ -22,6 +22,8 @@ import { SignOutDialog } from '../SignOutDialog';
 import { LinkWrapped } from '../LinkWrapped';
 import { ButtonStyled } from '../ButtonStyled';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+import { api } from '~/utils/api';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -180,8 +182,7 @@ export default function SiteHeader() {
     </Menu>
   );
 
-
-
+  const credits = api.user.getCredits.useQuery()
 
 
   return (
@@ -213,6 +214,8 @@ export default function SiteHeader() {
               </LinkWrapped>
             </Typography>
 
+
+
             <ButtonStyled color="inherit" onClick={() => {router.push("/community").catch(console.error)}}>
               Community
             </ButtonStyled>
@@ -222,6 +225,8 @@ export default function SiteHeader() {
             <ButtonStyled variant="outlined" color="inherit" onClick={() => {router.push("/generate").catch(console.error)}}sx={{ml: 1, borderRadius: 400}}>
               Generate Icons
             </ButtonStyled>
+
+
 
             {/* SPACER */}
             <Box sx={{ flexGrow: 1 }} />
@@ -237,6 +242,8 @@ export default function SiteHeader() {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
+
+
 
 
             {/* RIGHT */}
@@ -275,7 +282,19 @@ export default function SiteHeader() {
               >
                 <UserBadgeIndicator />
               </IconButton>
+
+
             </Box>
+            
+            {credits.data && 
+              <ButtonStyled color="inherit" sx={{borderRadius: 400, ml: 1}}>
+                Credits: {`${credits.data.credits}`}
+              </ButtonStyled>
+            }
+
+
+
+
 
             {/* SMALL DISPLAY */}
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
