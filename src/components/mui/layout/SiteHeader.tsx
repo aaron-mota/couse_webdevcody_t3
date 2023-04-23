@@ -214,6 +214,9 @@ export default function SiteHeader() {
               </LinkWrapped>
             </Typography>
 
+            <ButtonStyled color="inherit" onClick={() => {router.push("/collection").catch(console.error)}}>
+              Collection
+            </ButtonStyled>
             <ButtonStyled color="inherit" onClick={() => {router.push("/generate").catch(console.error)}}>
               Generate Icons
             </ButtonStyled>

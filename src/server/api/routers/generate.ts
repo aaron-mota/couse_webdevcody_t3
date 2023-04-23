@@ -61,6 +61,16 @@ export const generateRouter = createTRPCRouter({
       const finalPrompt = input.prompt
       const base64EncodedImage = await generateIcon(finalPrompt)
 
+
+      // if mock image, don't create db item (Icon) or save to file management service (AWS S3)
+      if (isMockImage(base64EncodedImage)) {
+        const imageUrl = base64EncodedImage
+        return {
+          imageUrl
+        }
+      }
+
+      // if DALL-E image (vs mock), continue
       const icon = await ctx.prisma.icon.create({
         data: {
           prompt: input.prompt,
@@ -69,28 +79,26 @@ export const generateRouter = createTRPCRouter({
       })
 
       // (3) if DALL-E image (vs mock), save image to file management service (AWS S3)
-      if (!isMockImage(base64EncodedImage)) {
-        try {
-          const putObject = {
-            Bucket: env.S3_BUCKET_NAME,
-            Body: Buffer.from(base64EncodedImage!, 'base64'),
-            Key: icon.id,
-            ContentEncoding: 'base64',
-            ContentType: 'image/png',
-          }
-          // console.log(putObject)
-          await s3.putObject(putObject)
-          .promise()
-        } catch(error) {
-          throw new TRPCError({
-            code: "BAD_REQUEST",
-            message: "Error saving image to file management service",
-          })
+      try {
+        const putObject = {
+          Bucket: env.S3_BUCKET_NAME,
+          Body: Buffer.from(base64EncodedImage!, 'base64'),
+          Key: icon.id,
+          ContentEncoding: 'base64',
+          ContentType: 'image/png',
         }
+        // console.log(putObject)
+        await s3.putObject(putObject)
+        .promise()
+      } catch(error) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Error saving image to file management service",
+        })
       }
 
       // http://course-webdevcody-t3-2.s3-website.us-east-2.amazonaws.com
-      const imageUrl = base64EncodedImage?.slice(0,4) === "http" ? base64EncodedImage : `https://${env.S3_BUCKET_NAME}.s3.${env.S3_REGION}.amazonaws.com/${icon.id}`
+      const imageUrl = `https://${env.S3_BUCKET_NAME}.s3.${env.S3_REGION}.amazonaws.com/${icon.id}`
       return {
         imageUrl,
       }
