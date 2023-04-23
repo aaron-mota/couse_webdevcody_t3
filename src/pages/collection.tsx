@@ -33,7 +33,7 @@ const Collection: NextPage = () => {
         <Typography variant="h4" sx={{mb:6}}>Your Icons</Typography>
       
         {/* Loading/Image Area */}
-        <Stack direction="row" gap={2} sx={{maxWidth: 1000, flexWrap: "wrap"}}>
+        <Stack direction="row" justifyContent="center" gap={2} sx={{maxWidth: 1000, flexWrap: "wrap"}}>
           {icons.isLoading ?
             <CircularProgress />
           : icons.data?.map((icon: Icon) =>
