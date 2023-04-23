@@ -30,7 +30,7 @@ const Collection: NextPage = () => {
         title="Collection"
       >
 
-        <Typography variant="h4" sx={{mb:6}}>Your Icons</Typography>
+        <Typography variant="h4" sx={{mb:6}}>Your Images</Typography>
       
         {/* Loading/Image Area */}
         <Stack direction="row" justifyContent="center" gap={2} sx={{maxWidth: 1000, flexWrap: "wrap"}}>

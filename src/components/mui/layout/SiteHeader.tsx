@@ -9,7 +9,6 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
@@ -191,7 +190,7 @@ export default function SiteHeader() {
           <Toolbar variant="dense">
 
             {/* Menu */}
-            <IconButton
+            {/* <IconButton
               size="large"
               edge="start"
               color="inherit"
@@ -199,7 +198,7 @@ export default function SiteHeader() {
               sx={{ mr: 2 }}
             >
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
 
             {/* App Name */}
             <Typography
@@ -215,14 +214,14 @@ export default function SiteHeader() {
 
 
 
-            <ButtonStyled color="inherit" onClick={() => {router.push("/community").catch(console.error)}}>
-              Community
-            </ButtonStyled>
             <ButtonStyled color="inherit" onClick={() => {router.push("/collection").catch(console.error)}}>
               Collection
             </ButtonStyled>
+            <ButtonStyled color="inherit" onClick={() => {router.push("/community").catch(console.error)}}>
+              Community
+            </ButtonStyled>
             <ButtonStyled variant="outlined" color="inherit" onClick={() => {router.push("/generate").catch(console.error)}}sx={{ml: 1, borderRadius: 400}}>
-              Generate Icons
+              Generate Images
             </ButtonStyled>
 
 

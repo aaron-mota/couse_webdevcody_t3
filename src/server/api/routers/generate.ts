@@ -57,8 +57,8 @@ export const generateRouter = createTRPCRouter({
       }
 
       // (2) enough credits (generate icon (fetch request to DALLE API))
-      // const finalPrompt = `a modern icon of ${input.prompt}, 3d rendered, metallic material, shiny, minimalist`
-      const finalPrompt = input.prompt
+      const finalPrompt = `${input.prompt} in the style of Fairly Odd Parents cartoon character`
+      // const finalPrompt = input.prompt
       const base64EncodedImage = await generateIcon(finalPrompt)
 
 

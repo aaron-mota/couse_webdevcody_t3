@@ -66,7 +66,7 @@ const GeneratePage: NextPage = () => {
           />
 
           <ButtonStyled type="submit" variant="contained" color="primary" sx={{ mt: 2 }} disabled={generateIcon.isLoading}>
-            Generate icon
+            Generate image
           </ButtonStyled>
 
           {!isLoggedIn ?

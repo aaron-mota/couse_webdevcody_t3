@@ -45,14 +45,14 @@ function HeroBanner() {
         <Stack justifyContent="center" alignItems="start" gap={2} sx={{width: 1, height: 1}}>
           <Stack>
             <Typography variant="h2" component="h1" gutterBottom sx={{fontWeight: 500, opacity: 0.8}}>
-              Generate icons with a click of a button
+              Generate images with the click of a button
             </Typography>
             <Typography variant="body2" component="h2" gutterBottom sx={{fontSize: "1.4rem", opacity: 0.6}}>
-              Use AI to generate icons in seconds instead of paying a designer and waiting for them to create them for you.
+              Use AI to generate images in seconds for you to play around with blah blah blah blah, blah blah de blah blah.
             </Typography>
           </Stack>
-          <ButtonStyled onClick={() => {router.push("/generate").catch(console.error)}}>
-              Start Generating Icons
+          <ButtonStyled variant="contained" sx={{borderRadius: 400}} onClick={() => {router.push("/generate").catch(console.error)}}>
+              Start Generating Images
           </ButtonStyled>
           {/* <LinkButton href={"/generate"} >
               Start Generating Icons
