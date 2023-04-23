@@ -18,7 +18,7 @@ export const iconsRouter = createTRPCRouter({
       })
       return icons
     }),
-  getCommunityIcons: publicProcedure
+  getIconsCommunity: publicProcedure
     .query(async ({ ctx }) => {
       const icons = await ctx.prisma.icon.findMany({
         take: 50,

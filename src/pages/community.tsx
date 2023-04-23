@@ -14,7 +14,7 @@ const Community: NextPage = () => {
   // const isLoggedIn = !!session.data
   
   // DB REQUESTS
-  const icons = api.icons.getCommunityIcons.useQuery()
+  const icons = api.icons.getIconsCommunity.useQuery()
 
 
   // TODO:  convert to onSuccess/onSettled (tRPC) (vs useEffect)
