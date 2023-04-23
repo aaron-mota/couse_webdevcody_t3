@@ -32,7 +32,7 @@ const PageContainer = ({
         {/* <SiteTopNav /> */}
         {/* <SiteTopNavTabs /> */}
 
-        <Stack justifyContent="center" alignItems="center" sx={{width: 1, height: 1, ...sx}}>
+        <Stack justifyContent="start" alignItems="center" sx={{width: 1, height: 1, ...sx}}>
           <Toolbar variant="dense" />
           {children}
         </Stack>
