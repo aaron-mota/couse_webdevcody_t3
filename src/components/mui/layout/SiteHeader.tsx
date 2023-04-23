@@ -288,7 +288,7 @@ export default function SiteHeader() {
             
             {credits.data && 
               <ButtonStyled color="inherit" sx={{borderRadius: 400, ml: 1}}>
-                Credits: {`${credits.data.credits}`}
+                Credits: {`${credits.data}`}
               </ButtonStyled>
             }
 

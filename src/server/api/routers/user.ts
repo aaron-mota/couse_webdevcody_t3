@@ -21,7 +21,7 @@ export const userRouter = createTRPCRouter({
     }),
   getCredits: protectedProcedure
     .query(async ({ctx}) => {
-      const credits = await ctx.prisma.user.findUnique({
+      const user = await ctx.prisma.user.findUnique({
         where: {
           id: ctx.session.user.id
         },
@@ -29,6 +29,6 @@ export const userRouter = createTRPCRouter({
           credits: true
         }
       })
-    return credits
+    return user?.credits
     })
 })
