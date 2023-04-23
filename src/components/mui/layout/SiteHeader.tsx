@@ -22,7 +22,6 @@ import { SignOutDialog } from '../SignOutDialog';
 import { LinkWrapped } from '../LinkWrapped';
 import { ButtonStyled } from '../ButtonStyled';
 import { useRouter } from 'next/router';
-import { Stack } from '@mui/material';
 
 
 const Search = styled('div')(({ theme }) => ({

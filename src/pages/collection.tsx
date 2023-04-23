@@ -20,7 +20,7 @@ const Collection: NextPage = () => {
   // TODO:  convert to onSuccess/onSettled (tRPC) (vs useEffect)
   useEffect(() => {
     console.log("icons.data", icons.data)
-  }, [icons.data?.length])
+  }, [icons.data, icons.data?.length])
 
 
 
