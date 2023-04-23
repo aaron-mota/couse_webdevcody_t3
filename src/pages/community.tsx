@@ -37,7 +37,7 @@ const Community: NextPage = () => {
           {icons.isLoading ?
             <CircularProgress />
           : icons.data?.map((icon: Icon) =>
-            <IconApp icon={icon} />
+            <IconApp icon={icon} showUserBadge />
           )}
         </Stack>
       </PageContainer>

@@ -7,10 +7,11 @@ import { UserBadgeIndicator } from '../UserBadgeIndicator'
 interface IconAppProps {
   icon?: Icon,
   imageUrl?: string,
+  showUserBadge?: boolean,
 }
 
 
-const IconApp = ({ icon, imageUrl }: IconAppProps) => {
+const IconApp = ({ icon, imageUrl, showUserBadge }: IconAppProps) => {
 
   // if MOCK IMAGE
   if (imageUrl) {
@@ -27,7 +28,7 @@ const IconApp = ({ icon, imageUrl }: IconAppProps) => {
   return (
     <Paper elevation={4} sx={{p: 0, lineHeight: 0, position: "relative"}}>
       <ImageWrapped src={imageUrl} alt={icon?.prompt} width={200} height={200} />
-      <UserBadgeIndicator userId={icon?.userId} sx={{position:"absolute", top: 4, left: 4}} />
+      {showUserBadge && <UserBadgeIndicator userId={icon?.userId} sx={{position:"absolute", top: 4, left: 4}} />}
     </Paper>
   )
 }
