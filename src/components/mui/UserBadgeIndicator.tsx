@@ -41,6 +41,8 @@ interface BadgeIndicatorProps extends BadgeProps {
 export const UserBadgeIndicator = (props: BadgeIndicatorProps) => {
   const session = useSession()
 
+  console.log("session", session)
+
   return (
     <BadgeIndicatorStyled 
       overlap="circular"
@@ -51,7 +53,7 @@ export const UserBadgeIndicator = (props: BadgeIndicatorProps) => {
       }}
       {...props}
     >
-      {props.children ? props.children : <Avatar alt={`${session.data?.user.name ?? ''}`} src={`${session.data?.user.image ?? ''}`} />}
+      {props.children ? props.children : <Avatar alt={session.data?.user.name ?? ''} src={session.data?.user.image ?? ''} />}
     </BadgeIndicatorStyled>
   )
 }
